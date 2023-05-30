@@ -1,0 +1,17 @@
+name: thoughtboard CI
+on: 
+  push: 
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:                                       
+  build:                                    # builds the application for CI env
+    runs-on: [ ubuntu-latest ]
+    steps:
+      - uses: actions/checkout@v2           # fetches and checks out the repo
+      - name: Use Node.js version 16
+        uses: actions/setup-node@v2
+        with: 
+          node-version: '16'
+      - run: npm install                    # defines terminal commands to run
+      

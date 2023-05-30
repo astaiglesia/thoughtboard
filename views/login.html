@@ -1,0 +1,38 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <main id="page">
+    <header>
+      <h1>Login Page</h1>
+    </header>
+    <a href="/secret">restricted route</a>
+
+    <form action="/auth/login/password" method="post">
+      <section>
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username" required autofocus>
+      </section>
+      <section>
+          <label for="current-password">Password</label>
+          <input id="current-password" name="password" type="password" autocomplete="current-password" required>
+      </section>
+      <button type="submit">Sign in</button>
+    </form>
+
+    <a href="/auth/logout">Sign out</a>
+
+    <h2>login with social</h2>
+    <a href="/auth/google">Google</a>
+    <a href="/auth/github">Github</a>
+    <a href="/auth/facebook">Facebook</a>
+    <a href="/auth/linkedin">LinkedIn</a>
+
+  </main>
+
+  <script src="/../assets/js/index.js"></script>
+</body>
+</html>

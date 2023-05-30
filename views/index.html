@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>thoughtboard</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  </head>
+  <body>
+    <main id="page">
+      <header>
+        <h1>thoughtboard</h1>
+        <a href="/secret">Member Resources</a>
+        <br />
+        <br />
+        <div>
+          <a href="/auth/signup">signup</a>
+          <a href="/auth/login">login</a>
+          <a href="/auth/logout">logout</a>
+        </div>
+      </header>
+      <br />
+      <hr />
+      <br />
+
+      <div class="create-post">
+        <textarea
+          id="post-input"
+          rows="4"
+          cols="50"
+          placeholder="Share your thoughts!"
+        ></textarea>
+        <button id="post">Post Message</button>
+      </div>
+
+      <ul id="post-list"></ul>
+    </main>
+    <script src="/js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sign up!</title>
+</head>
+<body>
+  <h1>join the thoughtboard community</h1>
+
+  <form class="registration-form" href="/auth/signup" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required aria-describedby="username-error">
+    <div id="username-error" role="alert" aria-live="assertive" class="error-message">Please enter a username.</div>
+  
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required aria-describedby="password-error">
+    <div id="password-error" role="alert" aria-live="assertive" class="error-message">Please enter a password.</div>
+  
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" required aria-describedby="email-error">
+    <div id="email-error" role="alert" aria-live="assertive" class="error-message">Please enter a valid email address.</div>
+  
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" required aria-describedby="location-error">
+    <div id="location-error" role="alert" aria-live="assertive" class="error-message">Please enter your location.</div>
+  
+    <input type="submit" value="Submit">
+  </form>
+
+</body>
+</html>

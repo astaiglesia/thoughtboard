@@ -1,0 +1,33 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest/globals": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "standard-with-typescript",
+    "airbnb",
+    "prettier",
+    "plugin:node/recommended",
+    "plugin:testing-library/react",
+    "plugin:jest-dom",
+    "plugin:jest/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": { "jsx": true },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier", "testing-library", "jest-dom"],
+  "rules": {
+    "semi": [2, "never"],
+    "prettier/prettier": "error",
+    "no-unused-vars": "warn",
+    "no-console": "warn",
+    "func-names": "warn",
+    "no-process-exit": "warn",
+    "object-shorthand": "warn",
+    "class-methods-use-this": "off"
+  }
+}

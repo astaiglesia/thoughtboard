@@ -1,0 +1,18 @@
+{
+  "exclude": ["./coverage", "./dist", "__tests__", "jest.config.js"],
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    
+    "allowJs": true,
+    "outDir": "dist"
+  }
+}
