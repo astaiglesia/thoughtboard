@@ -1,7 +1,7 @@
-# webserver v 1.1
+# webserver thoughtboard v 1.1
+<under development>
 
-
-Tech Stack:
+Tech:
 - TypeScript
 - Node
 - Express
@@ -10,16 +10,19 @@ Database:
 - Mongo
 - Mongoose
 
-
 Testing:
 - Jest
 - Supertest
 
 Security: 
-- HTTPS protocol
-- password encryption with BCrypt
-- OAuth SSO's
+- HTTPS
+- BCrypt
+- PassportJS
+- OAuth SSO strategies
   - google
+  - facebook
+  - linked in
+  - github
 
 
 
