@@ -1,9 +1,9 @@
 name: thoughtboard CI
 on: 
   push: 
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 jobs:                                       
   build:                                    # builds the application for CI env
     runs-on: [ ubuntu-latest ]
