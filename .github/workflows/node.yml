@@ -1,7 +1,7 @@
 name: thoughtboard CI
 on: 
   push: 
-    branches: [ main ]
+    branches: [ main, feature/ci_flow ]
     paths-ignore:
       - '**.md'
   pull_request:
@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         #os: [ubuntu-latest]  #, windows-latest, macos-latest]
-        node-version: [14, 16, 18]
+        node-version: [16, 18]
     
     steps:
       - name: Checkout
