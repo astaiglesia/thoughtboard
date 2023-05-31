@@ -27,108 +27,108 @@ import UserModel from './models/UserModel';
 
 
 // --- OAuth: passport strategies ---
-// passport.use(
-//   new GoogleStrategy(
-//     {
-//       clientID: process.env.GOOGLE_ID,
-//       clientSecret: process.env.GOOGLE_SECRET,
-//       callbackURL: '/auth/google/callback', // [] replace with production domain endpoint
-//     },
-//     verifyAuthProcess
-//   )
-// );
-// passport.use(
-//   new GithubStrategy(
-//     {
-//       clientID: process.env.GITHUB_ID,
-//       clientSecret: process.env.GITHUB_SECRET,
-//       callbackURL: '/auth/github/callback', 
-//     },
-//     verifyAuthProcess
-//   )
-// );
-// passport.use(
-//   new FacebookStrategy(
-//     {
-//       clientID: process.env.FACEBOOK_ID,
-//       clientSecret: process.env.FACEBOOK_SECRET,
-//       callbackURL: '/auth/facebook/callback',
-//     },
-//     verifyAuthProcess
-//   )
-// );
-// passport.use(
-//   new LinkedInStrategy(
-//     {
-//       clientID: process.env.LINKEDIN_ID,
-//       clientSecret: process.env.LINKEDIN_SECRET,
-//       callbackURL: '/auth/linkedin/callback',
-//       scope: ['r_emailaddress', 'r_liteprofile'],
-//       state: true,
-//     },
-//     verifyAuthProcess
-//   )
-// );
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+      callbackURL: '/auth/google/callback', // [] replace with production domain endpoint
+    },
+    verifyAuthProcess
+  )
+);
+passport.use(
+  new GithubStrategy(
+    {
+      clientID: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+      callbackURL: '/auth/github/callback', 
+    },
+    verifyAuthProcess
+  )
+);
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: process.env.FACEBOOK_ID,
+      clientSecret: process.env.FACEBOOK_SECRET,
+      callbackURL: '/auth/facebook/callback',
+    },
+    verifyAuthProcess
+  )
+);
+passport.use(
+  new LinkedInStrategy(
+    {
+      clientID: process.env.LINKEDIN_ID,
+      clientSecret: process.env.LINKEDIN_SECRET,
+      callbackURL: '/auth/linkedin/callback',
+      scope: ['r_emailaddress', 'r_liteprofile'],
+      state: true,
+    },
+    verifyAuthProcess
+  )
+);
 
-// passport.use(
-//   new LocalStrategy(async function verify(
-//     username: string,
-//     password: string,
-//     cb: any
-//   ): Promise<boolean> {
-//     const user = await UserModel.findOne({ username }).catch((err) => cb(err)); // handles errors
-//     if (!user) return cb(null, false, { message: 'username not found.' }); // handles db misses
+passport.use(
+  new LocalStrategy(async function verify(
+    username: string,
+    password: string,
+    cb: any
+  ): Promise<boolean> {
+    const user = await UserModel.findOne({ username }).catch((err) => cb(err)); // handles errors
+    if (!user) return cb(null, false, { message: 'username not found.' }); // handles db misses
 
-//     // uncomment for client passwords are transmitted encrypted
-//     //    - (replace password arg in compare function below)
-//     // const encryptedInput = await bcrypt.hash(password, 3);
-//     const result = await bcrypt.compare(password, user.password)
-//       .catch((err: any) => cb(err));
+    // uncomment for client passwords are transmitted encrypted
+    //    - (replace password arg in compare function below)
+    // const encryptedInput = await bcrypt.hash(password, 3);
+    const result = await bcrypt.compare(password, user.password)
+      .catch((err: any) => cb(err));
 
-//     return result
-//       ? cb(null, user)
-//       : cb(null, false, {
-//           message: 'incorrect username + password combination',
-//         });
-//   })
-// );
+    return result
+      ? cb(null, user)
+      : cb(null, false, {
+          message: 'incorrect username + password combination',
+        });
+  })
+);
 
-// // Session Handling
-// // serializes users into and out of sessions by persisting to the mongo store
-// passport.serializeUser((user: any, done) => {
-//   done(null, user.id);
-// });
-// // deserializes the session id from the cookie and associates it with the session data persisted to  the db
-// passport.deserializeUser((id: string, done) => {
-//   // User.findById(id).then(user => {
-//   //   done(null, user);
-//   // });
-//   done(null, id);
-// });
+// Session Handling
+// serializes users into and out of sessions by persisting to the mongo store
+passport.serializeUser((user: any, done) => {
+  done(null, user.id);
+});
+// deserializes the session id from the cookie and associates it with the session data persisted to  the db
+passport.deserializeUser((id: string, done) => {
+  // User.findById(id).then(user => {
+  //   done(null, user);
+  // });
+  done(null, id);
+});
 
 
 // --- Express App ---
 const app: Application = express();
 app                                       // -- Middleware --
   .use(helmet())                          // res-req configuration security
-  // .use(
-  //   session({
-  //     // session config
-  //     secret: process.env.SECRET,
-  //     secure: true,
-  //     cookie: { maxAge: 3 * 24 * 60 * 60 * 1000 },
-  //     resave: false,
-  //     rolling: true,
-  //     saveUninitialized: false,
-  //     store: MongoStore.create({          // persists sessions
-  //       mongoUrl: process.env.MONGO_URI,
-  //       autoRemove: 'interval',
-  //       autoRemoveInterval: 60 * 24,      // purge expired sessions every 24 hrs
-  //     }),
-  //   })
-  // )
-  // .use(passport.initialize())             // auth handling
-  // .use(passport.session())                // session handling
+  .use(
+    session({
+      // session config
+      secret: process.env.SECRET,
+      secure: true,
+      cookie: { maxAge: 3 * 24 * 60 * 60 * 1000 },
+      resave: false,
+      rolling: true,
+      saveUninitialized: false,
+      store: MongoStore.create({          // persists sessions
+        mongoUrl: process.env.MONGO_URI,
+        autoRemove: 'interval',
+        autoRemoveInterval: 60 * 24,      // purge expired sessions every 24 hrs
+      }),
+    })
+  )
+  .use(passport.initialize())             // auth handling
+  .use(passport.session())                // session handling
 
   .use(
     cors({                                // cross origin security
