@@ -7,7 +7,7 @@
     "messaging": "nodemon dist/src/server",
     "start": "node dist/src/server.js",
     "coverage": "jest --coverage",
-    "test": "jest --watch --verbose",
+    "test": "jest --detectOpenHandles --watch",
     "ci-test": "jest",
     "ts": "npx tsc -w"
   },
