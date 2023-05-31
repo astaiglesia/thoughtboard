@@ -81,7 +81,9 @@ const persistedUsers: string | undefined[] = [];
 
 describe('<>___USERS API___<>', () => {
   beforeAll(async () => await mongoConnect());
-  afterAll(async () => await mongoDisconnect());
+  afterAll(async () => {
+    await mongoDisconnect();
+  });
 
   describe('--- API ==> fetches users', () => {
     
