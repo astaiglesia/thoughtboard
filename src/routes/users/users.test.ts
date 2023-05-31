@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 import request from 'supertest';
+import { MongoClient } from 'mongodb';
 import { Error } from 'mongoose';
 
 import app from '../../app';

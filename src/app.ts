@@ -114,7 +114,7 @@ app                                       // -- Middleware --
   .use(
     session({
       // session config
-      secret: process.env.SECRET || 'v0!7r0n-d3f3nd3r',
+      secret: process.env.SECRET,
       secure: true,
       cookie: { maxAge: 3 * 24 * 60 * 60 * 1000 },
       resave: false,
