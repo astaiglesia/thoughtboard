@@ -2,16 +2,33 @@ name: thoughtboard CI
 on: 
   push: 
     branches: [ main ]
+    paths-ignore:
+      - '**.md'
   pull_request:
     branches: [ main ]
-jobs:                                       
+    paths-ignore:
+      - '**.md'
+
+
+jobs:
+  # ----------------------------------
   build:                                    # builds the application for CI env
-    runs-on: [ ubuntu-latest ]
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]  #, windows-latest, macos-latest]
+        node-version: [16.x, 18.x]
+    
     steps:
-      - uses: actions/checkout@v2           # fetches and checks out the repo
-      - name: Use Node.js version 16
-        uses: actions/setup-node@v2
-        with: 
-          node-version: '16'
-      - run: npm install                    # defines terminal commands to run
+      - name: Checkout
+        uses: actions/checkout@v3.5.2           # fetches and checks out the repo
       
+      - name: Setup Node.js environment ${{ matrix.node-version }}
+        uses: actions/setup-node@v2.5.2
+        with: 
+          node-version: ${{ matrix.node-version }}
+      
+      - run: npm install                    # defines terminal commands to run
+      - run: npm ci-test
+        shell: bash

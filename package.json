@@ -8,6 +8,7 @@
     "start": "node dist/src/server.js",
     "coverage": "jest --coverage",
     "test": "jest --watch --verbose",
+    "ci-test": "jest --verbose",
     "ts": "npx tsc -w"
   },
   "author": "astaiglesia",
