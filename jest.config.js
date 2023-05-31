@@ -1,5 +1,5 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  preset: ['ts-jest', '@shelf/jest-mongodb'],
+  preset: 'ts-jest',
   testEnvironment: 'node',
 };
