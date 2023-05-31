@@ -81,7 +81,7 @@ passport.use(
     //    - (replace password arg in compare function below)
     // const encryptedInput = await bcrypt.hash(password, 3);
     const result = await bcrypt.compare(password, user.password)
-      .catch((err) => cb(err));
+      .catch((err: any) => cb(err));
 
     return result
       ? cb(null, user)
@@ -93,7 +93,7 @@ passport.use(
 
 // Session Handling
 // serializes users into and out of sessions by persisting to the mongo store
-passport.serializeUser((user: Express.User, done) => {
+passport.serializeUser((user: any, done) => {
   done(null, user.id);
 });
 // deserializes the session id from the cookie and associates it with the session data persisted to  the db
