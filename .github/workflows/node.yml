@@ -15,6 +15,8 @@ jobs:
   build:                                    # builds the application for CI env
     runs-on: [ubuntu-latest]
     env:
+      MONGO_URI: mongodb://localhost/thoughtboard
+      PORT: 5000
       GOOGLE_ID: process.env.GOOGLE_ID
       GOOGLE_SECRET: process.env.GOOGLE_SECRET
       GITHUB_ID: process.env.GITHUB_ID
@@ -23,10 +25,12 @@ jobs:
       FACEBOOK_SECRET: process.env.FACEBOOK_SECRET
       LINKEDIN_ID: process.env.LINKEDIN_ID
       LINKEDIN_SECRET: process.env.LINKEDIN_SECRET
+      
     strategy:
       matrix:
         #os: [ubuntu-latest]  #, windows-latest, macos-latest]
         node-version: [16, 18]
+        mongodb-version: ['5.0', '6.0']
     
     steps:
       - name: Checkout
@@ -36,6 +40,11 @@ jobs:
         uses: actions/setup-node@v3
         with: 
           node-version: ${{ matrix.node-version }}
+
+      - name: MongoDB in GitHub Actions
+        uses: supercharge/mongodb-github-action@1.9.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
       
       - run: npm install                    # defines terminal commands to run
       - run: npm run ci-test
