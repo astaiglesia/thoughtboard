@@ -90,7 +90,7 @@ describe('<>___USERS API___<>', () => {
 
     test('should GET all users and respond with a 200', async () => {
       const response = await request(app).get('/api/users');
-      console.log("🚀 ~ file: users.test.ts:87 ~ expect array of users:", response.body)
+      // console.log("🚀 ~ file: users.test.ts:87 ~ expect array of users:", response.body)
      
       expect(response.statusCode).toBe(200);
       expect(Array.isArray(response.body)).toBe(true);
@@ -101,7 +101,7 @@ describe('<>___USERS API___<>', () => {
     test('should persist a new user + returns the added user with status 201', async () => {
       const response = await persistUser(testUser);
       expect(201);
-      console.log("🚀 ~ file: users.test.ts:101 first persisted user ------>:", response.body)
+      // console.log("🚀 ~ file: users.test.ts:101 first persisted user ------>:", response.body)
 
       if (response.statusCode === 201) {
         testUser = response.body;
@@ -125,7 +125,7 @@ describe('<>___USERS API___<>', () => {
       expect(updatedItem.body.lastName).toBe('McLovin');
     });
     test('should add a single user id to a friends list and respond with the updated user', async () => {
-      console.log(persistedUsers, "adding first id, line 135")
+      // console.log(persistedUsers, "adding first id, line 135")
       await request(app)
         .put(`/api/users/${testUser._id}/friends`)
         .set('Content-type', 'application/json')
@@ -145,7 +145,7 @@ describe('<>___USERS API___<>', () => {
       persistedUsers.push(response.body._id);
     });
     test('should add multiple, only unique, user ids to a friends list and respond with the updated user', async () => {
-      console.log('line 156 ------+ adding these user ids : ', persistedUsers);
+      // console.log('line 156 ------+ adding these user ids : ', persistedUsers);
 
       await request(app)
         .put(`/api/users/${testUser._id}/friends`)
