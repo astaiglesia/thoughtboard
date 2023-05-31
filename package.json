@@ -8,7 +8,7 @@
     "start": "node dist/src/server.js",
     "coverage": "jest --coverage",
     "test": "jest --detectOpenHandles --watch",
-    "ci-test": "jest",
+    "ci-test": "jest --detectOpenHandles",
     "ts": "npx tsc -w"
   },
   "author": "astaiglesia",
