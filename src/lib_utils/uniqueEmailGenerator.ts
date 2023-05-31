@@ -1,4 +1,4 @@
-/** uniqueEmailGenerator()
+/** generateUniqueEmail()
  * recursive function that generates a randomized string template
  * - generated email is checked against userbase instance
  * - recursive calls for db hits
@@ -13,13 +13,13 @@ import UserModel from '../models/UserModel';
 import { User, WordList } from 'lib_ts/types';
 import { getRandomInt } from './helpers';
 
-export default async function uniqueEmailGenerator(
+export default async function generateUniqueEmail(
   username: string = ''
 ): Promise<string> {
   username = generateEmail(DICT1, DICT2, SUFFIX);
   const user: User | null = await UserModel.findOne({ username });
 
-  return !user ? username : uniqueEmailGenerator();
+  return !user ? username : generateUniqueEmail();
 }
 function generateEmail(word1: WordList, word2: WordList, suffix: WordList): string {
   const idx1: number = getRandomInt(word1.length),
