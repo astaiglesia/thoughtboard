@@ -13,8 +13,10 @@ on:
 jobs:
   # ----------------------------------
   build:                                    # builds the application for CI env
-    runs-on: [ubuntu-latest] 
-
+    runs-on: [ubuntu-latest]
+    env:
+      GOOGLE_ID: process.env.GOOGLE_ID
+      GOOGLE_SECRET: process.env.GOOGLE_SECRET
     strategy:
       matrix:
         #os: [ubuntu-latest]  #, windows-latest, macos-latest]
